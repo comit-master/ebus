@@ -13,6 +13,8 @@ class Section(models.Model):
     class Meta:
         ordering = ['-date_added']
     #section added in first line
+    def __str__(self):
+        return self.name
 
 
 
@@ -26,3 +28,6 @@ class Product(models.Model):
 
     class Meta:
         ordering = ['-date_added']
+    
+    def __str__(self):
+        return self.title
