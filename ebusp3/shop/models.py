@@ -21,7 +21,7 @@ class Section(models.Model):
 class Product(models.Model):
     title = models.CharField(max_length=200)
     price = models.FloatField()
-    description = models.CharField(max_length=200)
+    description = models.TextField(max_length=2000)
     categorie = ForeignKey(Section, related_name='section', on_delete=models.CASCADE)
     image = models.CharField(max_length=5000)
     date_added = models.DateTimeField(auto_now=True)
