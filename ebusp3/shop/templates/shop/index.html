@@ -8,7 +8,7 @@
             <form class="card card-sm">
                 <div class="card-body row no-gutters aline-items-center">
                     <div class="col">
-                    <input type="search" name="item-name" class="form-control form-control-borderless">
+                    <input type="search" placeholder="Product name that you expecting" name="item-name" class="form-control form-control-borderless">
                 </div>
                 <div class="col-auto">
                 <button type="submit" class="btn btn-success">Search</button>
@@ -37,4 +37,29 @@
         {%endfor%}
 
     </div>
+
+
+    <div class="row mt-5"> <!--location of the block gap with the top product block-->
+        <div class="col-md-3 offset-md-5"> <!-- offset means block side location-->
+            <ul class="pagination"> <!--boostrap name in boostrap-->
+            {% if product_object.has_previous %}
+            <li class="page-item">
+                <a class="page-link" href="?page={{product_object.previous_page_number}}">Previous</a>
+            </li>
+            {% endif %}
+
+            <li class="page-item active"> 
+                <a class="page-link" href="?page={{product_object.number}}">{{ product_object.number}}</a>
+            </li>
+
+            {% if product_object.has_next %}
+            <li class="page-item">
+                <a class="page-link" href="?page={{product_object.next_page_number}}">Next</a>
+            </li>
+            {% endif %}
+            </ul>
+        </div>
+    </div>
+</div>
+
 {% endblock %}
