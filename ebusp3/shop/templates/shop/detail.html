@@ -1,0 +1,33 @@
+{% extends 'shop/bases.html'%}
+
+
+
+
+
+{% block content%}
+    <div class="row">
+        <div class="col-md-6"> <!-- img block size divided by 6-->
+            <div>
+
+                <img src="{{product.image}}" width="500px" height="500px"alt="">
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="text-warning display-3">
+                <strong>{{ product.title}}</strong>
+            </div>
+            <div class="text-primary"><pre>           <!-- front like the code bellow -->
+                   <strong>Price:€ {{ product.price}}</strong>
+                </pre>
+            </div>
+            <div >{{product.description}}
+            
+            </div>
+            <div>
+                <a  href="#"> <button class="col-md-12" style= background-color:#A3DFA2
+                    class="btn btn-success">Buy it</button></a>
+            </div>
+
+
+
+{% endblock%}

@@ -1,4 +1,4 @@
-{% extends "shop/base.html" %}
+{% extends "shop/bases.html" %}
 
 {% block content %}
 
@@ -28,7 +28,7 @@
                 <div class="card-body">
                     <div class="card-title">{{product.title}}</div>
                     <div style="color:orange" class="card-text"> € {{product.price}}</div>
-                    <button class="btn btn-warning">More</button>
+                    <a href="{{ product.id}}" class="btn btn-warning">More</a>
                     <button class="btn btn-success">Add to shopping</button>
 
                 </div>

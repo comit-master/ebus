@@ -16,3 +16,8 @@ def displayhome(request):
     page = request.GET.get('page') # display the page index number 
     product_object = paginator.get_page(page) # get the page refer to the index number
     return render(request, 'shop/index.html', {'product_object': product_object})
+
+
+def detail(request, myid):
+    product_object = Product.objects.get(id=myid) #retrieve ID from product
+    return render(request, 'shop/detail.html', {'product':product_object}) #display detail page from selected id product
