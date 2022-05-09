@@ -11,7 +11,7 @@
                     <input type="search" placeholder="Product name that you expecting" name="item-name" class="form-control form-control-borderless">
                 </div>
                 <div class="col-auto">
-                <button type="submit" class="btn btn-success">Search</button>
+                <button  type="submit" class="btn btn-success">Search</button>
 
                 </div>
                 </div>
@@ -29,7 +29,7 @@
                     <div class="card-title">{{product.title}}</div>
                     <div style="color:orange" class="card-text"> € {{product.price}}</div>
                     <a href="{{ product.id}}" class="btn btn-warning">More</a>
-                    <button class="btn btn-success">Add to shopping</button>
+                    <button id="{{ product.id }}" class="btn ted btn-success">Add to shopping</button>
 
                 </div>
             </div>
@@ -63,3 +63,45 @@
 </div>
 
 {% endblock %}
+
+{% block js %}
+
+<script type="text/javascript">
+    console.log('Just for test');
+    if(localStorage.getItem('cart')== null){
+        var cart = {}; /* code created variable*/
+    } else {
+        cart = JSON.parse(localStorage.getItem('cart')); /* local storage variable*/
+    }
+    $(document).on('click', '.ted', function(){
+        console.log('added');
+        var item_id = this.id.toString(); /* id identification*/
+        console.log(item_id);
+        if(cart[item_id] != undefined){
+            cart[item_id] = cart[item_id]+1; /*+1 added if id value refer to id already exist*/
+        }else{
+            cart[item_id] = 1; /* if key is undefined*/
+        }
+        console.log(cart);
+        localStorage.setItem('cart', JSON.stringify(cart)); /* use my code dictionnary to store data*/
+        document.getElementById('cart').innerHTML ='cart('+ Object.keys(cart).length + ')';
+
+    });
+    
+    document.getElementById('cart').setAttribute('title', '<h5>Voici votre liste<h5>')
+    $("[data-toggle=popover]").popover({
+//     html: true, 
+// 	content: function() {
+//     return $('title').html();
+//           }
+        
+});
+
+
+
+
+    
+</script>
+
+
+{% endblock%}
