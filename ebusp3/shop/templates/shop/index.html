@@ -88,13 +88,36 @@
 
     });
     
-    $(function () {
+    // dis(cart)
+    // $(function dis(cart) {
+    //     var cartString = " ";
+    //     var index = 1;
+    //     for(var x in cart){
+    //         cartString+=index;
+    //         cartString+= document.getElementById("aa"+x).innerHTML;
+    //         index +=1;
+    //     }
+    //     cartString += "<a href='/checkout' class='btn btn-primary'>Checkout </a>";
+    //     $('[data-toggle="popover"]').popover();
+    //     document.getElementById('cart').setAttribute('data-content', cartString); /* always put data-content-->*/
+
+    // })
+    
+    dis(cart)
+    $(function dis(cart) {
         var cartString = " ";
-        cartString += "<a href='/checkout' class='btn btn-primary'>Checkout </a>";
+        var index = 1;
+        for(var x in cart){
+            cartString+=index;
+            cartString+= document.getElementById("aa"+x).innerHTML + cart[x];
+            index +=1;
+        }
+        // cartString += "<a href='/checkout' class='btn btn-primary'>Checkout </a>";
         $('[data-toggle="popover"]').popover();
-        document.getElementById('cart').setAttribute('data-content', cartString); /* always put data-content*/
+        document.getElementById('cart').setAttribute('data-content', cartString); /* always put data-content-->*/
 
     })
+
 
 
 
