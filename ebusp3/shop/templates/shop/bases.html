@@ -23,21 +23,21 @@
             <div class="col-md-12"> 
 
                 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                    <a class="navbar-brand" href="#">ShopFire</a>
+                    <a class="navbar-brand" href="{% url 'home'%}">ShopFire</a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                       <span class="navbar-toggler-icon"></span>
                     </button>
                     <div class="collapse navbar-collapse" id="navbarNavDropdown">
                       <ul class="navbar-nav">
                         <li class="nav-item active">
-                          <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                          <a class="nav-link" href="{% url 'home'%}">Home <span class="sr-only">(current)</span></a>
                         </li>
                         <li class="nav-item">
                           <a class="nav-link" href="#">Products</a>
                         </li>
                         <li class="nav-item">
 
-                      <button id="cart" type="button" class="btn btn-lg btn-success" data-html="true" title="Your shopping cart" data-toggle="popover"  data-content="Click bellow to check the shopping cart">Cart</button>
+                      <button id="cart" type="button" class="btn btn-lg btn-success" data-html="true" title="Your shopping cart" data-toggle="popover"  data-content=" href='/checkout' class='btn btn-primary'>Checkout ">Cart</button>
 
 
                         </li>

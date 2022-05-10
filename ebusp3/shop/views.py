@@ -21,3 +21,7 @@ def displayhome(request):
 def detail(request, myid):
     product_object = Product.objects.get(id=myid) #retrieve ID from product
     return render(request, 'shop/detail.html', {'product':product_object}) #display detail page from selected id product
+
+
+def checkout(request):
+    return render(request, 'shop/checkout.html')
