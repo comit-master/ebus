@@ -8,10 +8,10 @@
             <form class="card card-sm">
                 <div class="card-body row no-gutters aline-items-center">
                     <div class="col">
-                    <input type="search" placeholder="Product name that you expecting" name="item-name" class="form-control form-control-borderless">
+                    <input type="search" placeholder="Product that you expect" name="item-name" class="form-control form-control-borderless">
                 </div>
                 <div class="col-auto">
-                <button type="submit" class="btn btn-success">Search</button>
+                <button  type="submit" class="btn btn-success">Search</button>
 
                 </div>
                 </div>
@@ -26,10 +26,10 @@
                 <img src={{ product.image }} 
                 alt="" class="card-img-top">
                 <div class="card-body">
-                    <div class="card-title">{{product.title}}</div>
-                    <div style="color:orange" class="card-text"> € {{product.price}}</div>
+                    <div id="aa{{product.id}}" class="card-title">{{product.title}}</div>
+                    <div id="price{{ product.id }}" style="color:orange" class="card-text"> {{product.price}}</div>
                     <a href="{{ product.id}}" class="btn btn-warning">More</a>
-                    <button class="btn btn-success">Add to shopping</button>
+                    <button id="{{ product.id }}" class="btn ted btn-success">Add to shopping</button>
 
                 </div>
             </div>
@@ -63,3 +63,66 @@
 </div>
 
 {% endblock %}
+
+{% block js %}
+
+<script type="text/javascript">
+    console.log('Just for test');
+    if(localStorage.getItem('cart')== null){
+        var cart = {}; /* code created variable*/
+    } else {
+        cart = JSON.parse(localStorage.getItem('cart')); /* local storage variable*/
+    }
+    $(document).on('click', '.ted', function(){
+        console.log('added');
+        var item_id = this.id.toString(); /* id identification*/
+        console.log(item_id);
+        if(cart[item_id] != undefined){ /* When user click*/
+            quantity = cart[item_id][0] +1 ; /* Here I explain to js to use several dimensions and quantity references*/
+            cart[item_id][0] = quantity; /*Here cart[item_id] dimension 0 take the position of quantity */
+            cart[item_id][2] += parseFloat(document.getElementById("price"+item_id).innerHTML);
+        }else{
+            quantity = 1;
+            price = parseFloat(document.getElementById("price"+item_id).innerHTML); 
+            name =  document.getElementById("aa"+item_id).innerHTML;/*maybe*/
+            cart[item_id] = [quantity, name, price ];
+                
+        }
+        console.log(cart);
+        localStorage.setItem('cart', JSON.stringify(cart));
+        document.getElementById("cart").innerHTML ="Cart("+ Object.keys(cart).length+")";
+            
+    });
+
+
+
+    DisList(cart);
+    function DisList(cart){
+        var cartString = " ";
+        cartString +="<h5>Voici votre liste</h5>";
+        var index = 1;
+        for(var x in cart){
+            cartString += index;
+            cartString += document.getElementById("aa"+x).innerHTML + " Qty: " + cart[x][0]+"</br>";
+            index +=1;
+        }
+        cartString += "<a href='/checkout' class='btn btn-primary'>Checkout </a>";
+        $('[data-toggle="popover"]').popover();
+        document.getElementById('cart').setAttribute('data-content', cartString); /* always put data-content-->*/
+
+
+
+    
+
+        }
+
+
+
+ 
+
+
+    
+</script>
+
+
+{% endblock%}
