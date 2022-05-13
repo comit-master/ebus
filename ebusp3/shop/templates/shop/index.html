@@ -8,7 +8,7 @@
             <form class="card card-sm">
                 <div class="card-body row no-gutters aline-items-center">
                     <div class="col">
-                    <input type="search" placeholder="Product name that you expecting" name="item-name" class="form-control form-control-borderless">
+                    <input type="search" placeholder="Product that you expect" name="item-name" class="form-control form-control-borderless">
                 </div>
                 <div class="col-auto">
                 <button  type="submit" class="btn btn-success">Search</button>
@@ -27,7 +27,7 @@
                 alt="" class="card-img-top">
                 <div class="card-body">
                     <div id="aa{{product.id}}" class="card-title">{{product.title}}</div>
-                    <div style="color:orange" class="card-text"> € {{product.price}}</div>
+                    <div id="price{{ product.id }}" style="color:orange" class="card-text"> {{product.price}}</div>
                     <a href="{{ product.id}}" class="btn btn-warning">More</a>
                     <button id="{{ product.id }}" class="btn ted btn-success">Add to shopping</button>
 
@@ -78,47 +78,47 @@
         var item_id = this.id.toString(); /* id identification*/
         console.log(item_id);
         if(cart[item_id] != undefined){
-            cart[item_id] = cart[item_id]+1; /*+1 added if id value refer to id already exist*/
+            quantity = cart[item_id][0] +1 ;
+            cart[item_id][0] = quantity;
+            cart[item_id][2] += parseFloat(document.getElementById("price"+item_id).innerHTML);
         }else{
-            cart[item_id] = 1; /* if key is undefined*/
+            quantity = 1;
+            price = parseFloat(document.getElementById("price"+item_id).innerHTML); /*error*/
+            name =  document.getElementById("aa"+item_id).innerHTML;/*maybe*/
+            cart[item_id] = [quantity, name, price ];
+                
         }
         console.log(cart);
-        localStorage.setItem('cart', JSON.stringify(cart)); /* use my code dictionnary to store data*/
-        document.getElementById('cart').innerHTML ='cart('+ Object.keys(cart).length + ')';
-
+        localStorage.setItem('cart', JSON.stringify(cart));
+        document.getElementById("cart").innerHTML ="Cart("+ Object.keys(cart).length+")";
+            
     });
-    
-    // dis(cart)
-    // $(function dis(cart) {
-    //     var cartString = " ";
-    //     var index = 1;
-    //     for(var x in cart){
-    //         cartString+=index;
-    //         cartString+= document.getElementById("aa"+x).innerHTML;
-    //         index +=1;
-    //     }
-    //     cartString += "<a href='/checkout' class='btn btn-primary'>Checkout </a>";
-    //     $('[data-toggle="popover"]').popover();
-    //     document.getElementById('cart').setAttribute('data-content', cartString); /* always put data-content-->*/
 
-    // })
-    
-    dis(cart)
-    $(function dis(cart) {
+
+
+    DisList(cart);
+    function DisList(cart){
         var cartString = " ";
+        cartString +="<h5>Voici votre liste</h5>";
         var index = 1;
         for(var x in cart){
-            cartString+=index;
-            cartString+= document.getElementById("aa"+x).innerHTML + cart[x];
+            cartString += index;
+            cartString += document.getElementById("aa"+x).innerHTML + " Qty: " + cart[x][0]+"</br>";
             index +=1;
         }
-        // cartString += "<a href='/checkout' class='btn btn-primary'>Checkout </a>";
+        cartString += "<a href='/checkout' class='btn btn-primary'>Checkout </a>";
         $('[data-toggle="popover"]').popover();
         document.getElementById('cart').setAttribute('data-content', cartString); /* always put data-content-->*/
 
-    })
 
 
+    
+
+        }
+
+
+
+ 
 
 
     
