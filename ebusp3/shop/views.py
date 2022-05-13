@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import Product, Order
 from django.core.paginator import Paginator
 # Create your views here.
@@ -35,7 +35,14 @@ def checkout(request):
         zipcode = request.POST.get('zipcode')
         ord = Order(items=items, total=total, name=name, email=email, address=address, city=city, country=country, zipcode=zipcode)
         ord.save()
+        return redirect('confirm')
 
 
     return render(request, 'shop/checkout.html')
 
+def confirm(request):
+    info = Order.objects.all()[:1]
+    for item in info:
+        name = item.name
+
+    return render(request, 'shop/confirm.html', {'name':name})
