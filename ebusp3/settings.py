@@ -76,7 +76,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'ebusp3.wsgi.application'
-
+#develop for github
 
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
