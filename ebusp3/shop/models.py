@@ -42,10 +42,10 @@ class Order(models.Model):
     city = models.CharField(max_length=200)
     country = models.CharField(max_length=300)
     zipcode = models.CharField(max_length=300)
-    date_commande = models.DateTimeField(auto_now=True)
+    order_date = models.DateTimeField(auto_now=True)
 
     class Meta:
-        ordering = ['-date_commande']
+        ordering = ['-order_date'] #order ranking, most recent
 
     def __str__(self):
         return self.name

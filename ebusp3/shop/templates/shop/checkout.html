@@ -19,6 +19,7 @@
 
         <form method="POST">
             {% csrf_token %}
+            <input type="hidden" id="items", name="items"> <!-- new hidden input-->
             <div class="form-row">
               <div class="form-group col-md-6">
                 <label for="inputEmail4">Name</label>
