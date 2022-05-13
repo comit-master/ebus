@@ -10,7 +10,7 @@ class AdminProduct(admin.ModelAdmin):
     list_display = ('title','price','categorie','date_added')
 
 class AdminOrder(admin.ModelAdmin):
-    list_display = ('items', 'name','email', 'address', 'city', 'country', 'order_date')
+    list_display = ('items', 'name','email', 'address', 'city', 'country', 'total','order_date')
 
 admin.site.register(Product, AdminProduct)
 admin.site.register(Section, AdminSection)

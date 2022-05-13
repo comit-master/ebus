@@ -36,6 +36,7 @@ class Product(models.Model):
 
 class Order(models.Model):
     items = models.CharField(max_length=300) 
+    total = models.CharField(max_length=200)
     name = models.CharField(max_length=150)
     email = models.EmailField()
     address = models.CharField(max_length=200)
@@ -48,4 +49,4 @@ class Order(models.Model):
         ordering = ['-order_date'] #order ranking, most recent
 
     def __str__(self):
-        return self.name
+        return self.name #display name refer to the order
