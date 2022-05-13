@@ -4,7 +4,7 @@ from .models import Product, Section, Order
 
 admin.site.site_header = "ShopFire Administration"
 admin.site.site_title = "SF Shop"
-admin.site.index_title = "Management"
+admin.site.index_title = "Management Configuration" #finalcoment
 
 class AdminSection(admin.ModelAdmin):
     list_display = ('name','date_added')
