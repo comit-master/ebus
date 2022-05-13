@@ -5,6 +5,7 @@
 <div class="row">
     <div class="col-md-12">
         <ul class="list-group" id="item-list">
+          <h3 class="text-center"> This is your list</h3>
            
 
           </ul>
@@ -14,20 +15,23 @@
 
 
 
+    </div>
+</div>
+
 {% endblock%}
 {% block js %}
 <script type="text/javascript">
-        if(localStorage.getItem('cart')==null){
+        if(localStorage.getItem('cart')==null){ /*if empty localstorage*/
             var cart =  {};
 
         }else{
-            cart = JSON.parse(localStorage.getItem('cart'));
+            cart = JSON.parse(localStorage.getItem('cart'));/*If not empty localstorage*/
         }
         var total = 0;
         var number = 0;
         console.log(cart)
         for(item in cart){
-            let name = cart[item][1];
+            let name = cart[item][1]; /*instance*/
             let quantity = cart[item][0];
             let price = cart[item][2];
             number += quantity;
@@ -37,7 +41,7 @@
               <center><span class="badge badge-primary bg-primary badge-pill"> QTY: ${quantity}</span></center>
                 <center><span  class="badge badge-warning bg-primary badge-pill">€ ${price}</span></center>
             </li>`;
-            $('#item-list').append(itemString);
+            $('#item-list').append(itemString); /*Display the itemString variable refet to tag where id=#item-list*/
         }
         let itemNombre = ` <li class="list-group-item d-flex justify-content-between align-items-center">
               <b class="bg-success ">TOTAL</b>

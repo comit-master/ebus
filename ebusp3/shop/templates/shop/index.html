@@ -77,13 +77,13 @@
         console.log('added');
         var item_id = this.id.toString(); /* id identification*/
         console.log(item_id);
-        if(cart[item_id] != undefined){
-            quantity = cart[item_id][0] +1 ;
-            cart[item_id][0] = quantity;
+        if(cart[item_id] != undefined){ /* When user click*/
+            quantity = cart[item_id][0] +1 ; /* Here I explain to js to use several dimensions and quantity references*/
+            cart[item_id][0] = quantity; /*Here cart[item_id] dimension 0 take the position of quantity */
             cart[item_id][2] += parseFloat(document.getElementById("price"+item_id).innerHTML);
         }else{
             quantity = 1;
-            price = parseFloat(document.getElementById("price"+item_id).innerHTML); /*error*/
+            price = parseFloat(document.getElementById("price"+item_id).innerHTML); 
             name =  document.getElementById("aa"+item_id).innerHTML;/*maybe*/
             cart[item_id] = [quantity, name, price ];
                 
