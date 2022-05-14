@@ -1,1 +1,1 @@
-web: gunicorn ebusp3.wsgi --log-file - 
+web: gunicorn ebusp3.wsgi:application --log-file - 
